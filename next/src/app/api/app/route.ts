@@ -5,10 +5,27 @@ async function readHtmlFile(filePath: string) {
   return fileContent;
 }
 
-export async function GET() {
-  const fileContent = await readHtmlFile("./public/angular/index.html");
+const forceAngularResolutionStr = `
+  <script>
+    document.write(
+      \`<base href="\${location.pathname}\${
+        location.pathname.endsWith("/") ? "" : "/"
+      }"/>\`
+    );
+  </script>
+`;
 
-  return new Response(fileContent, {
+export async function GET() {
+  const fileContent = await readHtmlFile("./public/angular/browser/index.html");
+
+  // Insert forceAngularResolutionStr after closing </title> tag
+  const indexOfClosingTitleTag = fileContent.lastIndexOf("</title>") + 8;
+  const updatedFileContent =
+    fileContent.slice(0, indexOfClosingTitleTag) +
+    forceAngularResolutionStr +
+    fileContent.slice(indexOfClosingTitleTag);
+
+  return new Response(updatedFileContent, {
     headers: {
       "Content-Type": "text/html",
     },
