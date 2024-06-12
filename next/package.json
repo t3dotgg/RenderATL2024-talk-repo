@@ -12,6 +12,7 @@
     "@faker-js/faker": "^8.4.1",
     "better-sqlite3": "^11.0.0",
     "libsql": "^0.3.18",
+    "mongodb": "^6.7.0",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18"
