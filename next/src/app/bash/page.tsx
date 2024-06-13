@@ -1,7 +1,7 @@
 import { revalidatePath } from "next/cache";
-import sql from "../db";
-import { seedDB } from "../db/seed";
-import { getMongo } from "../db/mongo";
+import sql from "@/db";
+import { seedDB } from "@/db/seed";
+import { getMongo } from "@/db/mongo";
 
 let content: unknown = null;
 
