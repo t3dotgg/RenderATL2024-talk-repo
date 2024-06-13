@@ -15,5 +15,5 @@ export async function getMongo() {
 
   console.log("Connected");
 
-  return client.db("test");
+  return client.db("test2");
 }
